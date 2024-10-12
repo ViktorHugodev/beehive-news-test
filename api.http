@@ -1,0 +1,29 @@
+### 1. GET - Retrieve all tasks
+GET http://localhost:3000/api/todos
+Accept: application/json
+
+###
+
+### 2. POST - Create a new task
+POST http://localhost:3000/api/todos
+Content-Type: application/json
+
+{
+  "title": "Learn TypeScript"
+}
+
+###
+
+### 3. PUT - Update an existing task (with ID 1)
+PUT http://localhost:3000/api/todos/1
+Content-Type: application/json
+
+{
+  "title": "Learn TypeScript with TypeORM",
+  "completed": true
+}
+
+###
+
+### 4. DELETE - Delete an existing task (with ID 1)
+DELETE http://localhost:3000/api/todos/1

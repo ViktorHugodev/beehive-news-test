@@ -4,7 +4,7 @@ import { AppDataSource } from './database/database'
 import todoRoutes from './routes/to-do-routes'
 
 const app: Application = express()
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use('/api/todos', todoRoutes)
