@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node src/server.ts",
-    "dev": "nodemon --watch src --exec 'npx ts-node src/server.ts'"
+    "dev": "nodemon --watch src --exec \"npx ts-node src/server.ts\"",
+    "migration:generate": "npx typeorm migration:generate -d src/database/migrations -n",
+    "migration:run": "npx typeorm migration:run",
+    "migration:revert": "npx typeorm migration:revert"
   },
   "keywords": [],
   "author": "",

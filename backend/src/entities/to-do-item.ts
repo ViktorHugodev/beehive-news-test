@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()
 export class ToDoItem {
@@ -10,4 +10,10 @@ export class ToDoItem {
 
   @Column({ default: false })
   completed!: boolean
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt!: Date
+
+  @Column({ type: 'timestamp', nullable: true })
+  completedAt!: Date | null
 }
