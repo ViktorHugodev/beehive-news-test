@@ -1,58 +1,58 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {Task} from '../types/interfaces';
+import {StackNavigationProp} from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-interface TaskItemProps {
-  task: {
-    id: number;
-    title: string;
-    completed: boolean;
-  };
-  onToggle: (id: number) => void;
-  onDelete: (id: number) => void;
-}
-
-const TaskItem: React.FC<TaskItemProps> = ({task, onToggle, onDelete}) => {
-  return (
-    <TaskContainer>
-      <TaskTitle completed={task.completed}>{task.title}</TaskTitle>
-      <Actions>
-        <CompleteButton
-          title={task.completed ? 'Desmarcar' : 'Completar'}
-          onPress={() => onToggle(task.id)}
-        />
-        <DeleteButton
-          title="Deletar"
-          onPress={() => onDelete(task.id)}
-          color="red"
-        />
-      </Actions>
-    </TaskContainer>
-  );
+type RootStackParamList = {
+  Main: undefined;
+  Detail: {task: Task};
 };
 
-const TaskContainer = styled.View`
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
+type TaskItemProps = {
+  task: Task;
+  onDelete: (id: number) => void;
+  onToggle: (id: number) => void;
+  navigation: StackNavigationProp<RootStackParamList, 'Main'>;
+};
 
-const TaskTitle = styled.Text<{completed: boolean}>`
-  font-size: 16px;
-  text-decoration: ${({completed}) => (completed ? 'line-through' : 'none')};
-`;
-
-const Actions = styled.View`
-  flex-direction: row;
-`;
-
-const CompleteButton = styled.Button``;
-
-const DeleteButton = styled.Button`
-  color: red;
-`;
+const TaskItem: React.FC<TaskItemProps> = ({
+  task,
+  onDelete,
+  onToggle,
+  navigation,
+}) => (
+  <View style={{flexDirection: 'row', alignItems: 'center', padding: 8}}>
+    <Text
+      style={{
+        flex: 1,
+        textDecorationLine: task.completed ? 'line-through' : 'none',
+        fontSize: 20,
+      }}>
+      {task.title}
+    </Text>
+    <View style={{flexDirection: 'row'}}>
+      <TouchableOpacity
+        onPress={() => onToggle(task.id)}
+        style={{marginHorizontal: 8}}>
+        <Icon
+          name="check"
+          size={28}
+          color={task.completed ? 'green' : 'gray'}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Detail', {task})}
+        style={{marginHorizontal: 8}}>
+        <Icon name="edit" size={28} color="blue" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => onDelete(task.id)}
+        style={{marginHorizontal: 8}}>
+        <Icon name="trash" size={28} color="red" />
+      </TouchableOpacity>
+    </View>
+  </View>
+);
 
 export default TaskItem;
