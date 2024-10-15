@@ -26,8 +26,8 @@ Follow these steps to get the project running on your local machine.
 
 ```bash
 
-git clone https://github.com/your-repo-url.git
-cd your-project-folder
+git clone https://github.com/ViktorHugodev/beehive-news-test
+cd backend
 
 ```
 
@@ -44,8 +44,7 @@ npm install
 To set up PostgreSQL using Docker, run the following command:
 
 ```bash
-bash
-Copiar código
+
 docker run --name todo-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=todo -p 5432:5432 -d postgres
 
 ```
@@ -61,8 +60,7 @@ This will create a PostgreSQL container with the following credentials:
 Create a `.env` file in the root of your project and add the following:
 
 ```bash
-bash
-Copiar código
+
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
