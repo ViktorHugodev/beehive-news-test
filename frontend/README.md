@@ -1,79 +1,169 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Todo App Project
 
-# Getting Started
+## 🚀 Technologies
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This project was developed using the following technologies:
 
-## Step 1: Start the Metro Server
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Navigation](https://reactnavigation.org/)
+- [Axios](https://axios-http.com/)
+- [Styled Components](https://styled-components.com/)
+- [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
+- [Android Emulator](https://developer.android.com/studio/run/emulator) or [iOS Simulator](https://developer.apple.com/documentation/xcode/running_your_app_in_the_simulator_or_on_a_device) - for testing
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 💻 Project
 
-To start Metro, run the following command from the _root_ of your React Native project:
+This project is a simple Todo application to manage tasks with CRUD operations (Create, Read, Update, Delete). The app is built using React Native and TypeScript, and communicates with a backend API to store tasks.
 
-```bash
-# using npm
-npm start
+---
 
-# OR using Yarn
-yarn start
-```
+## 🚀 How to Run
 
-## Step 2: Start your Application
+Follow these steps to get the project running on your local machine.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
+### 1. Clone the repository:
 
 ```bash
-# using npm
-npm run ios
 
-# OR using Yarn
-yarn ios
+git clone https://github.com/ViktorHugodev/beehive-news-test
+cd frontend
+
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### 2. Install dependencies:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
 
-## Step 3: Modifying your App
+npm install
 
-Now that you have successfully run the app, let's modify it.
+```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### 3. Set up the Backend API:
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+This app requires a backend API to function properly. You can use the Todo API provided in the [Todo API Project](https://github.com/ViktorHugodev/beehive-news-test) or set up your own backend.
 
-## Congratulations! :tada:
+**If using the provided Todo API Project:**
 
-You've successfully run and modified your React Native App. :partying_face:
+- Follow the instructions in the [Todo API Project README](https://github.com/ViktorHugodev/beehive-news-test) to set up and run the backend server.
 
-### Now what?
+Ensure the backend API is running on your local machine, and note the base URL (e.g., `http://localhost:3000`).
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### 4. Configure the API Endpoint:
 
-# Troubleshooting
+Create or update the `api.ts` file in the `src/services` directory with the correct base URL of your backend API.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+```tsx
 
-# Learn More
+import axios from 'axios';
 
-To learn more about React Native, take a look at the following resources:
+const api = axios.create({
+  baseURL: 'http://localhost:3000/api',
+});
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+export default api;
+
+```
+
+**Note:** If you are running the app on a physical device or emulator, you may need to adjust the base URL to point to your machine's IP address.
+
+
+### 5. Start the React Native application:
+
+### For Android:
+
+Start the Metro Bundler:
+
+```bash
+
+npx react-native start
+
+```
+
+In a new terminal window, run:
+
+```bash
+
+npx react-native run-android
+
+```
+
+In a new terminal window, run:
+
+```bash
+
+npx react-native run-ios
+
+```
+
+---
+
+## 👩🏿‍💻 Routes
+
+### **`GET /api/todos`** - Retrieve all tasks
+
+- Retrieves a list of all tasks stored in the database.
+
+### **`POST /api/todos`** - Create a new task
+
+- Create a new task by sending the following JSON body:
+
+```json
+
+{
+  "title": "Your task title"
+}
+
+```
+
+### **`PUT /api/todos/:id`** - Update a task
+
+- Updates an existing task by sending the updated `title` and/or `completed` status:
+
+```json
+{
+  "title": "Updated task title",
+  "completed": true
+}
+
+```
+
+### **`DELETE /api/todos/:id`** - Delete a task
+
+- Deletes a task by its `id`.
+
+---
+
+## ⚠️ Troubleshooting
+
+### **Icons Not Displaying**
+
+- Ensure that `react-native-vector-icons` is installed:
+
+```bash
+
+npm install react-native-vector-icons
+
+
+```
+
+- For Android, make sure the following line is included in `android/app/build.gradle`:
+
+```
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+```
+
+### **API Connection Issues**
+
+- Verify the base URL in `api.ts`.
+- Ensure the backend server is running and accessible.
+- If using an emulator, adjust the base URL:
+    - For Android Emulator: Use `http://10.0.2.2:3000/api`.
+    - For iOS Simulator: `http://localhost:3000/api`.
+
+### **Network Issues on Physical Devices**
+
+- Use your machine's IP address in `api.ts` instead of `localhost`.
+- Ensure both the device and machine are on the same network.
